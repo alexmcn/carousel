@@ -34,11 +34,22 @@ export default class Carousel extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   .carousel {
-    overflow: hidden;
-    width: 1130px;
-    padding: 30px 20px;
+    width: 260px;
+    padding: 30px;
     margin: 0 auto;
     background-color: white;
+
+    @media only screen and (min-width : 710px) {
+      width: 700px;
+    }
+
+    @media only screen and (min-width : 1140px) {
+      width: 1130px;
+    }
+
+    > div {
+      overflow: hidden;
+    }
   }
 
   ul {
@@ -54,7 +65,11 @@ export default class Carousel extends Vue {
     vertical-align: top;
     width: 200px;
     padding: 0;
-    margin: 0 10px;
+    margin-right: 20px;
+
+    &:last-item {
+      margin-right: 0;
+    } 
 
     span {
       display: block;
