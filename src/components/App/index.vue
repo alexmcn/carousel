@@ -1,13 +1,19 @@
 <template>
   <div id="app">
+    <Carousel :images="images" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import axios from 'axios';
+import Carousel from '@/components/Carousel/index.vue';
 
-@Component({})
+@Component({
+  components: {
+    Carousel,
+  },
+})
 
 export default class App extends Vue {
   public images: any[] = [];
