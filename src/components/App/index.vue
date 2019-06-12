@@ -40,7 +40,14 @@ export default class App extends Vue {
 
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Ropa+Sans&display=swap');
-#app {
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
   font-family: 'Ropa Sans', sans-serif;
+  background-color: hsl(155, 33%, 90%) ;
 }
 </style>
