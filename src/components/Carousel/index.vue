@@ -20,8 +20,14 @@
         </li>
       </ul>
       <div class="miniControls">
-        <button data-test="mini-prev-button"  class="prev" v-on:click="onPrev"><Arrow /></button>
-        <button data-test="mini-next-button" class="next" v-on:click="onNext"><Arrow /></button>
+        <button data-test="mini-prev-button"  class="prev" v-on:click="onPrev">
+          <Arrow />
+          <span class="sr-only">Previous</span>
+        </button>
+        <button data-test="mini-next-button" class="next" v-on:click="onNext">
+          <Arrow />
+          <span class="sr-only">Next</span>
+        </button>
       </div>
     </div>
 
@@ -82,6 +88,12 @@ export default class Carousel extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
   $mobile-button-size: 45px;
+  .sr-only {
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+  }
   .carousel {
     width: 260px;
     padding: 30px;
