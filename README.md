@@ -1,5 +1,9 @@
 # carousel
 
+Please note: there is an issue with the SVG loader. As a result you may get linting warnings and warnings in the test (Invalid component definition / cannot find module './arrow.svg). Please ignore! 
+
+Whilst it is responsive, you will need to refresh the page to reset controls (adding onResize will fix this)
+
 ## Project setup
 ```
 yarn install
