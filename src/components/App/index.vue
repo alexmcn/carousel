@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Carousel :images="images" />
+    <Carousel v-if="images && images.length" :images="images" />
   </div>
 </template>
 
@@ -34,7 +34,6 @@ export default class App extends Vue {
   public mounted() {
     this.fetchData();
   }
-
 }
 </script>
 

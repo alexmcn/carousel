@@ -3,7 +3,11 @@
   <div class="carousel">
     <div class="outer" ref="outer">
       <ul v-if="images && images.length" ref="inner">
-        <li :key="image.id" v-for="image of images">
+        <li
+          :key="image.id"
+          v-for="(image, index) of images"
+          :class="{ 'active': index === activeSlide }"
+        >
           <figure>
             <span>
               <img
@@ -16,21 +20,22 @@
         </li>
       </ul>
       <div class="miniControls">
-        <button class="prev"><Arrow /></button>
-        <button class="next"><Arrow /></button>
+        <button data-test="mini-prev-button"  class="prev" v-on:click="onPrev"><Arrow /></button>
+        <button data-test="mini-next-button" class="next" v-on:click="onNext"><Arrow /></button>
       </div>
     </div>
 
   </div>
   <div class="controls">
-    <button class="prev">Prev</button>
-    <button class="next">Next</button>
+    <button class="prev" v-on:click="onPrev">Prev</button>
+    <button class="next" v-on:click="onNext">Next</button>
   </div>
 </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import getSlidePosition from './getSlidePosition';
 import Arrow from './arrow.svg';
 
 interface Image {
@@ -46,6 +51,31 @@ interface Image {
 })
 export default class Carousel extends Vue {
   @Prop() private images!: Image[];
+
+  private outerWidth: number = 0;
+  private activeSlide: number = 0;
+
+  private slideTo(position: number) {
+    (this.$refs.inner as any).style.transform = `translateX(${getSlidePosition(this.outerWidth, 220, position)}px)`;
+    this.activeSlide = position;
+  }
+
+  private onPrev() {
+    if (this.activeSlide > 0) {
+      this.slideTo(this.activeSlide - 1);
+    }
+  }
+
+  private onNext() {
+    if (this.activeSlide < this.images.length - 1) {
+      this.slideTo(this.activeSlide + 1);
+    }
+  }
+
+  private mounted() {
+    this.outerWidth = (this.$refs.outer as any).offsetWidth + 20;
+    this.slideTo(0);
+  }
 }
 </script>
 
