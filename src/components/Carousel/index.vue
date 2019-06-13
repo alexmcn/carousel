@@ -100,16 +100,16 @@ export default class Carousel extends Vue {
     margin: 0 auto;
     background-color: white;
 
+    > div {
+      overflow: hidden;
+    }
+
     @media only screen and (min-width : 710px) {
       width: 700px;
     }
 
     @media only screen and (min-width : 1140px) {
       width: 1130px;
-    }
-
-    > div {
-      overflow: hidden;
     }
   }
 
@@ -212,6 +212,9 @@ export default class Carousel extends Vue {
         left: 10px;
       }
     }
+    @media only screen and (min-width : 710px) {
+      display: none;
+    }
   }
 
   .controls {
@@ -233,6 +236,10 @@ export default class Carousel extends Vue {
 
     .next {
       border-radius: 0 10px 10px 0;
+    }
+
+    @media only screen and (max-width : 710px) {
+      display: none;
     }
   }
 </style>
